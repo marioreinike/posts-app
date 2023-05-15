@@ -1,4 +1,4 @@
-# Tarea Técnica - Mario Reinike
+# Posts App - Mario Reinike
 
 ### Backend app deployment
 1. Run the app with docker compose:
