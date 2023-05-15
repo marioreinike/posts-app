@@ -8,11 +8,13 @@ const request = supertest(app.callback());
 
 describe('Posts routes', () => {
   let posts: Post[];
+  let post: Post;
 
   beforeAll(async () => {
     await orm.sync({ force: true });
 
-    posts = await factory.createMany('Post', 10);
+    posts = await factory.createMany('Post', 9);
+    post = posts[0];
   });
 
   afterAll(async () => {
@@ -21,9 +23,7 @@ describe('Posts routes', () => {
 
   describe('Create', () => {
     test('Missing param - throws error', async () => {
-      const response = await request
-        .post('/posts')
-        .send({ other: 'incorrect param' });
+      const response = await request.post('/posts').send({ other: 'incorrect param' });
 
       expect(response.status).toBe(400);
     });
@@ -59,16 +59,16 @@ describe('Posts routes', () => {
     });
 
     test('executes correctly', async () => {
-      const response = await request.get(`/posts/${posts[0].id}`);
+      const response = await request.get(`/posts/${post.id}`);
 
       expect(response.status).toBe(200);
-      expect(response.body).toEqual(expect.objectContaining({ name: posts[0].name }));
+      expect(response.body).toEqual(expect.objectContaining({ name: post.name }));
     });
   });
 
   describe('Update', () => {
     test('executes correctly', async () => {
-      const response = await request.put(`/posts/${999}`).send({ name: 'hello there' });
+      const response = await request.put(`/posts/${post.id}`).send({ name: 'hello there' });
 
       expect(response.status).toBe(200);
       expect(response.body).toEqual(expect.objectContaining({ name: 'hello there' }));
@@ -76,9 +76,20 @@ describe('Posts routes', () => {
 
     test('some error', async () => {
       jest.spyOn(Post.prototype, 'update').mockRejectedValueOnce(new Error('Mock error'));
-      const response = await request.put(`/posts/${999}`).send({ name: 'hello there' });
+      const response = await request.put(`/posts/${post.id}`).send({ name: 'hello there' });
 
       expect(response.status).toBe(400);
+    });
+  });
+
+  describe('Destroy', () => {
+    test('executes correctly', async () => {
+      const response = await request.delete(`/posts/${post.id}`);
+
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual(expect.objectContaining({ id: post.id }));
+      const deletedPost = await Post.findByPk(post.id);
+      expect(deletedPost).toBeNull();
     });
   });
 });

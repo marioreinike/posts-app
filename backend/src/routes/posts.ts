@@ -6,7 +6,9 @@ const router = new Router();
 
 // LIST
 router.get('/', async (ctx) => {
-  ctx.body = await Post.findAll();
+  const posts = await Post.findAll();
+  console.log(posts);
+  ctx.body = posts;
 });
 
 // CREATE
@@ -22,17 +24,17 @@ router.post('/', requireParams(['name', 'description']), async (ctx) => {
 });
 
 router.param('postId', async (id, ctx, next) => {
-  try {
-    ctx.state.post = await Post.findByPk(id);
-  } catch (error) {
-    ctx.throw(400, 'Post not found.');
+  ctx.state.post = await Post.findByPk(id);
+  if (!ctx.state.post) {
+    ctx.throw(404, 'Post not found.');
   }
   await next();
 });
 
 // SHOW
 router.get('/:postId', async (ctx) => {
-  ctx.body = ctx.state.post;
+  const { post } = ctx.state;
+  ctx.body = post;
 });
 
 // UPDATE

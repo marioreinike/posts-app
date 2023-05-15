@@ -7,7 +7,7 @@ export default class Post extends Model {
   @AutoIncrement
   @PrimaryKey
   @Column
-  declare id: number;
+    id: number;
 
   @AllowNull(false)
   @Column

@@ -1,6 +1,5 @@
-import { factory, SequelizeAdapter } from 'factory-girl';
-import './post';
+import { factory } from 'factory-girl';
 
-factory.setAdapter(new SequelizeAdapter());
+require('./post');
 
 export default factory;

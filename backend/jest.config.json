@@ -1,0 +1,12 @@
+{
+  "preset": "ts-jest",
+  "testEnvironment": "node",
+  "transform": {
+    "^.+\\.ts?$": "ts-jest"
+  },
+  "transformIgnorePatterns": ["<rootDir>/node_modules/"],
+  "modulePathIgnorePatterns": ["<rootDir>/build/", "<rootDir>/src/__tests__/factories/"],
+  "setupFilesAfterEnv": [
+    "./src/setupTests.ts"
+  ]
+}
