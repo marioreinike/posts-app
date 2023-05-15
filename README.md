@@ -1,12 +1,12 @@
 # Posts App - Mario Reinike
 
-### Backend app deployment
+### Run backend app
 1. Run the app with docker compose:
 ```bash
 docker compose up -d --build
 ```
 
-### Frontend app deployment
+### Run frontend app
 1. Install dependencies:
 ```bash
 yarn install
