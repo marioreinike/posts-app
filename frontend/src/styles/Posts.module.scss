@@ -1,0 +1,74 @@
+@import './constants.scss';
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1em;
+
+  button {
+    margin-left: 4px;
+  }
+}
+
+.button {
+  position: relative;
+  appearance: none;
+  background: none;
+  font-size: medium;
+  padding: 6px;
+  outline: none;
+  border: 1px solid $color-primary-pastel;
+  color: $color-primary;
+  cursor: pointer;
+  background-color: $color-secondary;
+  border-radius: 2px;
+  transition: all 0.15s;
+
+  &:active {
+    transform: translateY(3px);
+  }
+
+  &:hover {
+    border: 2px solid $color-primary-pastel;
+  }
+
+  &:disabled {
+    color: $color-disabled;
+    border: 1px solid $color-disabled;
+
+    &:hover {
+      border: 1px solid $color-disabled;
+      cursor: unset;
+    }
+  }
+}
+
+.post {
+  border-radius: 3px;
+  border: 1px solid $color-text;
+  margin-bottom: 16px;
+  .postHead {
+    display: flex;
+    justify-content: space-between;
+    background-color: #CCC;
+    align-items: center;
+  }
+}
+
+.deleteIcon {
+  width: 1.5em;
+  cursor: pointer;
+  transition: 0.5s;
+
+  &:hover {
+    background-color: $color-disabled;
+  }
+}
+
+.input {
+  font-size: medium;
+  height: 1.6em;
+  flex: 1;
+}
+

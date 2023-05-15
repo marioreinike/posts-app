@@ -1,0 +1,43 @@
+@import './constants.scss';
+
+.modalContainer {
+  position: fixed;
+  overflow-y: hidden;
+  top: 0;
+  left: 0;
+  background-color: $alert-background;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  padding: 0.5em;
+  width: 400px;
+  height: 300px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+
+  label {
+    display: block;
+  }
+
+  input {
+    margin-bottom: 1em;
+    width: 95%;
+  }
+}
+
+.modalClose {
+  float: right;
+  border: none;
+}
+
+.center {
+  text-align: center;
+}
