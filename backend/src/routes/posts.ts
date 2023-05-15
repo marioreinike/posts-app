@@ -7,7 +7,6 @@ const router = new Router();
 // LIST
 router.get('/', async (ctx) => {
   const posts = await Post.findAll();
-  console.log(posts);
   ctx.body = posts;
 });
 

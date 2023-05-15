@@ -1,12 +1,7 @@
 # Posts backend
 
 ### How to run the application locally
-1. Install dependencies:
+1. Run the app with docker compose:
 ```bash
-yarn install
-```
-
-2. Run the app:
-```bash
-yarn start
+docker compose up -d --build
 ```
